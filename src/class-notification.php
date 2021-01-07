@@ -190,7 +190,7 @@ class Notification {
 		}
 
 		$screen = get_current_screen();
-		if ( self::SCREEN_ANY === $this->option( 'screen' ) || Str::contains( $this->option( 'screen' ), $screen->id ) ) {
+		if ( self::SCREEN_ANY === $this->option( 'screen' ) || false !== stristr( $screen->id, $this->option( 'screen' ) ) ) {
 			$this->displayed = true;
 		}
 

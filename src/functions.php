@@ -19,7 +19,7 @@ namespace Awesome9\Notifications;
  * @return Center
  */
 function add( $message, $options = array() ) {
-	return Center::add( $message, $options );
+	return Center::get()->add( $message, $options );
 }
 
 /**
@@ -31,5 +31,5 @@ function add( $message, $options = array() ) {
  * @return Notification Instance of delete notification.
  */
 function remove( $notification_id ) {
-	return Center::remove( $notification_id );
+	return Center::get()->remove( $notification_id );
 }
