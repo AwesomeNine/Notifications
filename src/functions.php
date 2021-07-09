@@ -18,7 +18,7 @@ namespace Awesome9\Notifications;
  * @param  array  $options Set of options.
  * @return Center
  */
-function add( $message, $options = array() ) {
+function add( $message, $options = [] ) {
 	return Center::get()->add( $message, $options );
 }
 

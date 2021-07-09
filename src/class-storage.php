@@ -33,7 +33,7 @@ class Storage {
 	 *
 	 * @var Notification[]
 	 */
-	private $notifications = array();
+	private $notifications = [];
 
 	/**
 	 * The constructor
@@ -54,8 +54,8 @@ class Storage {
 	 * @return Storage
 	 */
 	public function hooks() {
-		add_action( 'init', array( $this, 'get_from_storage' ) );
-		add_action( 'shutdown', array( $this, 'update_storage' ) );
+		add_action( 'init', [ $this, 'get_from_storage' ] );
+		add_action( 'shutdown', [ $this, 'update_storage' ] );
 		return $this;
 	}
 
@@ -68,7 +68,7 @@ class Storage {
 	 * @param  array  $options Set of options.
 	 * @return Storage
 	 */
-	public function add( $message, $options = array() ) {
+	public function add( $message, $options = [] ) {
 		if ( isset( $options['id'] ) && ! is_null( $this->get_by_id( $options['id'] ) ) ) {
 			return;
 		}
@@ -163,7 +163,7 @@ class Storage {
 	 * @since 1.0.0
 	 */
 	public function update_storage() {
-		$notifications = array_filter( $this->notifications, array( $this, 'remove_notification' ) );
+		$notifications = array_filter( $this->notifications, [ $this, 'remove_notification' ] );
 
 		// No notifications to store, clear storage.
 		if ( empty( $notifications ) ) {
@@ -171,7 +171,7 @@ class Storage {
 			return;
 		}
 
-		$notifications = array_map( array( $this, 'notification_to_array' ), $notifications );
+		$notifications = array_map( [ $this, 'notification_to_array' ], $notifications );
 
 		// Save the notifications to the storage.
 		update_option( $this->option_name, $notifications );

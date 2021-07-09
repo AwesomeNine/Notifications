@@ -50,10 +50,10 @@ class Center {
 	public function hooks() {
 		$this->storage->hooks();
 
-		add_action( 'all_admin_notices', array( $this, 'display' ) );
-		add_action( 'admin_footer', array( $this, 'print_javascript' ) );
+		add_action( 'all_admin_notices', [ $this, 'display' ] );
+		add_action( 'admin_footer', [ $this, 'print_javascript' ] );
 
-		add_action( 'wp_ajax_wp_helpers_notice_dismissible', array( $this, 'notice_dismissible' ) );
+		add_action( 'wp_ajax_wp_helpers_notice_dismissible', [ $this, 'notice_dismissible' ] );
 		return $this;
 	}
 
@@ -79,7 +79,7 @@ class Center {
 	 * @param  array  $options Set of options.
 	 * @return Center
 	 */
-	public function add( $message, $options = array() ) {
+	public function add( $message, $options = [] ) {
 		$this->storage->add( $message, $options );
 		return $this;
 	}
