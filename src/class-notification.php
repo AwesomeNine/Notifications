@@ -61,7 +61,7 @@ class Notification {
 	 *
 	 * @var array Options of this Notification.
 	 */
-	private $options = array();
+	private $options = [];
 
 	/**
 	 * Internal flag for whether notifications has been displayed.
@@ -78,17 +78,17 @@ class Notification {
 	 * @param  string $message Message string.
 	 * @param  array  $options Set of options.
 	 */
-	public function __construct( $message, $options = array() ) {
+	public function __construct( $message, $options = [] ) {
 		$this->message = $message;
 		$this->options = wp_parse_args(
 			$options,
-			array(
+			[
 				'id'         => '',
 				'classes'    => '',
 				'persistent' => false,
 				'type'       => self::SUCCESS,
 				'screen'     => self::SCREEN_ANY,
-			)
+			]
 		);
 	}
 
@@ -111,10 +111,10 @@ class Notification {
 	 * @return array
 	 */
 	public function to_array() {
-		return array(
+		return [
 			'message' => $this->message,
 			'options' => $this->options,
-		);
+		];
 	}
 
 	/**
@@ -147,13 +147,13 @@ class Notification {
 	 * @return string The rendered notification.
 	 */
 	public function render() {
-		$attributes = array();
+		$attributes = [];
 
 		// Default notification classes.
-		$classes = array(
+		$classes = [
 			'notice',
 			'notice-' . $this->option( 'type' ),
-		);
+		];
 
 		if ( ! empty( $this->option( 'classes' ) ) ) {
 			$classes[] = $this->option( 'classes' );
